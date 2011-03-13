@@ -1,0 +1,35 @@
+use 5.008;
+exit 0 if $^O ne 'MSWin32';
+use strict;
+use warnings;
+use Module::Build;
+use utf8;
+
+my $build = Module::Build->new(
+    dist_name => 'Win32-App-which',
+    module_name => 'Win32::App::which',
+    dist_abstract => 'which Unix classic command for Windows',
+    dist_author => 'Olivier Mengué <dolmen@cpan.org>',
+    ( Module::Build->VERSION gt '0.37' ? (release_status => 'unstable') : () ),
+    license => 'perl',
+    meta_merge => {
+    },
+
+    #script_files => 'which.cmd',
+
+    conflicts => {
+	# Conflicts with ppt-0.14, but this dist doesn't has a module against
+	# which we could check the version
+    },
+    requires => {},
+
+    dynamic_config => 0,
+    configure_requires => {
+	# Some old M::B created additional files
+	'Module::Build' => '0.3800',
+    },
+    build_requires => {
+	'Test::More' => '0',
+    },
+);
+$build->create_build_script;
