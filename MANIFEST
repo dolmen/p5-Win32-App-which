@@ -6,3 +6,4 @@ MANIFEST			This list of files
 META.json
 META.yml
 t/10-bin-chk.t
+t/90-pod.t
