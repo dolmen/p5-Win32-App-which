@@ -1,7 +1,8 @@
 @echo off
-:: Copyright: Â© 2010 Olivier MenguÃ©
+:: Copyright: -© 2010 Olivier Mengu+©
 :: License: GPLv3
 
+if "%1"=="" exit /B 1
 if not "%~x1"=="" if exist "%1" echo %~f1& goto :EOF
 setlocal
 set F=%~nx1
