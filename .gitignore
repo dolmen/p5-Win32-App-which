@@ -5,3 +5,4 @@
 /blib
 /Build
 /Build.bat
+*.tar.gz
