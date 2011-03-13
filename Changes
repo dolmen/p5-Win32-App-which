@@ -1,0 +1,5 @@
+Revision history for Win32::App::which.
+
+0.01    2010-03-13T22:15
+        Initial release based on my "which.cmd" already posted at
+          https://gist.github.com/553703
