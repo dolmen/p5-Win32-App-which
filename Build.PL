@@ -10,7 +10,7 @@ my $build = Module::Build->new(
     module_name => 'Win32::App::which',
     dist_abstract => 'which Unix classic command for Windows',
     dist_author => 'Olivier Mengué <dolmen@cpan.org>',
-    ( Module::Build->VERSION gt '0.37' ? (release_status => 'unstable') : () ),
+    ( Module::Build->VERSION gt '0.37' ? (release_status => 'stable') : () ),
     license => 'perl',
     meta_merge => {
     },
