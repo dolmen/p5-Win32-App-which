@@ -2,5 +2,6 @@
 /MYMETA.*
 /*.bak
 /_build
+/blib
 /Build
 /Build.bat
