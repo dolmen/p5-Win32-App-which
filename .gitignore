@@ -1,0 +1,6 @@
+/META.*
+/MYMETA.*
+/*.bak
+/_build
+/Build
+/Build.bat
