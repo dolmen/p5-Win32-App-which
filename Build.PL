@@ -31,5 +31,8 @@ my $build = Module::Build->new(
     build_requires => {
 	'Test::More' => '0',
     },
+
+    add_to_cleanup => [ 'bin/which.cmd~' ],
 );
+
 $build->create_build_script;
