@@ -2,11 +2,11 @@
 :: Copyright © 2010-2011 Olivier Mengu‚
 :: License: GPLv3
 
-if "%1"=="" exit /B 1
+if "%~1"=="" exit /B 1
 
 setlocal
 set SPEC=First
-if "%1"=="-a" (
+if "%~1"=="-a" (
     set SPEC=All
     shift
 )
@@ -16,51 +16,66 @@ if "%1"=="--" shift
 call :$AbsolutePath P .
 set PATH=%P%;%PATH%
 
-goto :Find%SPEC%
+set Found=
 
-:FindFirst
-if "%~x1"=="" goto :NoExt
-
-:: Extension provided
-if exist "%~1" echo %~f1& goto :EOF
-call :Find "%~1"
-goto :End
-
-:NoExt
+if not "%~x1"=="" set F=%~1& call :VisitPATH :Visit%SPEC%Ext
 set F=%~1
-for %%e in (%PATHEXT%) do call :Find "%F%%%e"
-
-:End
-if "%Found%"=="1" goto :OK
+if "%Found%"=="1" exit /B 0
+call :VisitPATH :Visit%SPEC%
+endlocal & if "%Found%"=="1" exit /B 0
 echo %~1 not found.>&2
 endlocal
 exit /B 1
 
-:Find
-::echo.%~1
-call :$PathFinder P "%~1"
-if "%P%"=="" goto :EOF
-if "%~f1"=="" call :Found?2 "%P%" & goto :EOF
-:Found?2
-if "%~x1"=="" goto :EOF
+:VisitFirstExt
+if "%Found%"=="1" goto :EOF
+if not exist "%~1\%F%" goto :EOF
+echo %~1\%F%
 set Found=1
-echo.%P%
 goto :EOF
 
-:FindAll
-echo Not yet implemented.>&2
-exit /B 1
+:VisitFirst
+if "%Found%"=="1" goto :EOF
+set G=%F%
+for %%e in (%PATHEXT%) do set F=%G%%%e& call :VisitFirstExt "%~1"
+set F=%G%
+goto :EOF
+::if not "%Found%"=="1" if exist "%~1\%F%%%e" echo %~1\%F%%%e& set Found=1
 
+:VisitAllExt
+if not exist "%~1\%F%" goto :EOF
+echo %~1\%F%
+set Found=1
+goto :EOF
 
-:OK
-endlocal
-exit /B 0
-
-:$PathFinder
-set "%1=%~$PATH:2"
+:VisitAll
+for %%e in (%PATHEXT%) do (
+    if exist "%~1\%F%%%e" echo %~1\%F%%%e& set Found=1
+)
 goto :EOF
 
 :$AbsolutePath
 set "%1=%~f2"
+goto :EOF
+
+:: VisitPATH
+::
+:: %1 callback name
+::
+: == VisitPATH ==
+set VisitPATH_P=%PATH%
+call :VisitPATH_Loop %1 .
+goto :EOF
+
+:VisitPATH_Loop
+set VisitPATH_Q=%PATH%
+:: Find the first "." in the reduced %PATH% => first directory in %PATH%
+set PATH=%VisitPATH_P%& call %1 "%~$PATH:2"
+set PATH=%VisitPATH_Q:*;=%
+if not "%PATH%"=="%VisitPATH_Q%" goto :VisitPATH_Loop
+
+set PATH=%VisitPATH_P%
+set VisitPATH_P=
+set VisitPATH_Q=
 goto :EOF
 
