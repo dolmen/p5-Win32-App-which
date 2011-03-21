@@ -6,3 +6,4 @@
 /Build
 /Build.bat
 *.tar.gz
+/Win32-App-which*
