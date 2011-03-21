@@ -14,7 +14,7 @@ if "%~1"=="" exit /B 2
 
 :: Add the current directory to the PATH
 call :$AbsolutePath P .
-set PATH=%P%;%PATH%
+set "PATH=%P%;%PATH%"
 
 set Found=
 
@@ -35,7 +35,7 @@ exit /B 1
 
 :: Use builtin for this special case
 :FirstExtBuiltin
-set Found=%~$PATH:1
+set "Found=%~$PATH:1"
 if not "%Found%"=="" echo %Found%& set Found=1
 goto :End
 
@@ -70,19 +70,19 @@ goto :EOF
 :: %1 callback name
 ::
 : == VisitPATH ==
-set VisitPATH_P=%PATH%
+set "VisitPATH_P=%PATH%"
 call :VisitPATH_Loop . %1 "%~2"
 goto :EOF
 
 :VisitPATH_Loop
-set VisitPATH_Q=%PATH%
+set "VisitPATH_Q=%PATH%"
 :: Find the first "." (%1) in the reduced %PATH% => first directory in %PATH%
-set PATH=%VisitPATH_P%& call %2%Found% "%~$PATH:1\%~3"
+set "PATH=%VisitPATH_P%"& call %2%Found% "%~$PATH:1\%~3"
 :: Delete the first path
-set PATH=%VisitPATH_Q:*;=%
+set "PATH=%VisitPATH_Q:*;=%"
 if not "%PATH%"=="%VisitPATH_Q%" goto :VisitPATH_Loop
 
-set PATH=%VisitPATH_P%
+set "PATH=%VisitPATH_P%"
 set VisitPATH_P=
 set VisitPATH_Q=
 goto :EOF
