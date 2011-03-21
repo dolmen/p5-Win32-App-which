@@ -11,8 +11,13 @@ my $build = Module::Build->new(
     dist_abstract => 'which Unix classic command for Windows',
     dist_author => 'Olivier Mengué <dolmen@cpan.org>',
     ( Module::Build->VERSION gt '0.37' ? (release_status => 'stable') : () ),
+    # license => 'gpl_3', # Blocked by bug RT#66757 in Module::Build
     license => 'perl',
     meta_merge => {
+	resources => {
+	    # See bug RT#66758
+	    license => 'http://www.gnu.org/licenses/gpl-3.0.html',
+	},
     },
 
     #script_files => 'which.cmd',
