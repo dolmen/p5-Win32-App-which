@@ -1,6 +1,7 @@
 bin/which.cmd
 Build.PL
 Changes
+lib/which.pod
 lib/Win32/App/which.pm
 MANIFEST			This list of files
 META.json
