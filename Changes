@@ -1,5 +1,16 @@
 Revision history for Win32::App::which.
 
-0.01    2010-03-13T22:15
+1.00    2011-03-21  Olivier Mengué (DOLMEN)
+        Completely rewrote which.cmd to fix major issues:
+        - show multiple files only with '-a'
+        - file list was not ordered according to PATH in case of multiple
+          matches in one directory
+        - add '--'
+        - add support for '-a'
+	Add 'which.pod' for documentation.
+        Note that license is GNU GPL 3.0 or later, but some Module::Build bugs
+          block from specifying it in META.json.
+
+0.01    2011-03-13  Olivier Mengué (DOLMEN)
         Initial release based on my "which.cmd" already posted at
           https://gist.github.com/553703
