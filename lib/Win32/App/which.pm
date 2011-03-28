@@ -1,7 +1,7 @@
 use strict;
 
 package Win32::App::which;
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
 1;
 

@@ -1,5 +1,8 @@
 Revision history for Win32::App::which.
 
+1.01    2011-03-28  Olivier Mengué (DOLMEN)
+        Refactoring leading to huge (x8) speed improvement.
+
 1.00    2011-03-21  Olivier Mengué (DOLMEN)
         Completely rewrote which.cmd to fix major issues:
         - show multiple files only with '-a'
