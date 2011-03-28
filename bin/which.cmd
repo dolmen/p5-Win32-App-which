@@ -25,8 +25,7 @@ if "%~1"=="--" shift
 if "%~1"=="" exit /B 2
 
 :: Add the current directory to the PATH
-call :$AbsolutePath P .
-set "PATH=%P%;%PATH%"
+for %%D in (.) do set "PATH=%%~fD;%PATH%"
 
 set Found=
 
@@ -73,29 +72,22 @@ for %%e in (%PATHEXT%) do call :Visit%SPEC%Ext2 "%~1%%e"
 :VisitFirstExt1
 goto :EOF
 
-:$AbsolutePath
-set "%1=%~f2"
-goto :EOF
-
 :: VisitPATH
 ::
 :: %1 callback name
 ::
 : == VisitPATH ==
-set "VisitPATH_P=%PATH%"
-call :VisitPATH_Loop . %1 "%~2"
-goto :EOF
-
+set "VisitPATH_P=%PATH:;=^|%"
 :VisitPATH_Loop
-set "VisitPATH_Q=%PATH%"
-:: Find the first "." (%1) in the reduced %PATH% => first directory in %PATH%
-set "PATH=%VisitPATH_P%"& call %2%Found% "%~$PATH:1\%~3"
-:: Delete the first path
-set "PATH=%VisitPATH_Q:*;=%"
-if not "%PATH%"=="%VisitPATH_Q%" goto :VisitPATH_Loop
-
-set "PATH=%VisitPATH_P%"
+for /F "usebackq tokens=1 delims=|" %%i in ('%VisitPATH_P%') do call :VisitPATH_X "%%~fi\%~2" %1
+set "VisitPATH_Q=%VisitPATH_P%"
+set "VisitPATH_P=%VisitPATH_P:*^|=%"
+if not "%SPEC%%Found%"=="First1" if not "%VisitPATH_P%"=="%VisitPATH_Q%" goto :VisitPATH_Loop
 set VisitPATH_P=
 set VisitPATH_Q=
 goto :EOF
+
+:VisitPATH_X
+::echo [%~f1] %Found%
+goto %2%Found%
 
