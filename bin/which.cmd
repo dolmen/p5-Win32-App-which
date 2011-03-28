@@ -55,7 +55,6 @@ goto :End
 if #%Found%==#1 goto :EOF
 :VisitFirstExt
 :VisitAllExt
-:VisitAllExt1
 :VisitAllExt2
 ::echo %~1 ?
 if not exist "%~1" goto :EOF
@@ -66,10 +65,7 @@ goto :EOF
 :: Test all extensions for the %1 filename
 :VisitFirst
 :VisitAll
-:VisitAll1
 for %%e in (%PATHEXT%) do call :Visit%SPEC%Ext2 "%~1%%e"
-:VisitFirst1
-:VisitFirstExt1
 goto :EOF
 
 :: VisitPATH
@@ -79,15 +75,10 @@ goto :EOF
 : == VisitPATH ==
 set "VisitPATH_P=%PATH:;=^|%"
 :VisitPATH_Loop
-for /F "usebackq tokens=1 delims=|" %%i in ('%VisitPATH_P%') do call :VisitPATH_X "%%~fi\%~2" %1
+for /F "usebackq tokens=1 delims=|" %%D in ('%VisitPATH_P%') do call %1 "%%~fD\%~2"
 set "VisitPATH_Q=%VisitPATH_P%"
 set "VisitPATH_P=%VisitPATH_P:*^|=%"
 if not "%SPEC%%Found%"=="First1" if not "%VisitPATH_P%"=="%VisitPATH_Q%" goto :VisitPATH_Loop
 set VisitPATH_P=
 set VisitPATH_Q=
 goto :EOF
-
-:VisitPATH_X
-::echo [%~f1] %Found%
-goto %2%Found%
-
