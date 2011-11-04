@@ -4,8 +4,9 @@ Changes
 lib/which.pod
 lib/Win32/App/which.pm
 MANIFEST			This list of files
-MANIFEST.SKIP
 META.json
 META.yml
+README
 t/10-bin-chk.t
 t/90-pod.t
+t/91-pod-coverage.t

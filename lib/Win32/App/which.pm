@@ -1,7 +1,9 @@
+use 5.006;
 use strict;
+use warnings;
 
 package Win32::App::which;
-our $VERSION = '1.01';
+$Win32::App::which::VERSION = '1.02';
 
 1;
 

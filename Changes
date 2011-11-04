@@ -1,5 +1,15 @@
 Revision history for Win32::App::which.
 
+1.02    2011-11-04  Olivier Mengué (DOLMEN)
+	Add metadata about the public repository.
+	Mostly a dummy release just to raise Kwalitee for the CPANTS game:
+	- add README
+	- add fake t/91-pod-coverage.t (useless for this non-perl module)
+	- make t/90-pod.t run only on release testing (anyway we use M::B's
+	  built-in "testpod" command)
+	- add strictures and perl version requirement to the dummy module
+          Win32::App::which
+
 1.01    2011-03-28  Olivier Mengué (DOLMEN)
         Refactoring leading to huge (x8) speed improvement.
 
