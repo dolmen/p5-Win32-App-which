@@ -17,6 +17,7 @@ my $build = Module::Build->new(
 	resources => {
 	    # See bug RT#66758
 	    license => 'http://www.gnu.org/licenses/gpl-3.0.html',
+	    repository => 'https://github.com/dolmen/p5-Win32-App-which.git',
 	},
     },
 
