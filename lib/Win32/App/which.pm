@@ -3,9 +3,12 @@ use strict;
 use warnings;
 
 package Win32::App::which;
-$Win32::App::which::VERSION = '1.02';
+BEGIN {
+    $Win32::App::which::VERSION = '1.021';
+}
 
 1;
+__END__
 
 =head1 NAME
 
