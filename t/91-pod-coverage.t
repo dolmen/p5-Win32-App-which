@@ -1,7 +1,8 @@
 #!perl
 use strict;
 use warnings;
-use Test::More skip_all => "This test is here only for raising Kwalitee";
+use Test::More $ENV{RELEASE_TESTING} ? ()
+                                     : (skip_all => "only for raising Kwalitee");
 
-eval "use Pod::Coverage 1.00";
+use Test::Pod::Coverage 1.00;
 all_pod_coverage_ok();
