@@ -27,7 +27,9 @@ my $build = Module::Build->new(
 	# Conflicts with ppt-0.14, but this dist doesn't has a module against
 	# which we could check the version
     },
-    requires => {},
+    requires => {
+	perl => '5.006',
+    },
 
     dynamic_config => 0,
     configure_requires => {
