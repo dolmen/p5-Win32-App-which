@@ -1,5 +1,10 @@
 Revision history for Win32::App::which.
 
+1.022   2013-10-05  Olivier Mengué (DOLMEN)
+	Fix POD for Kwalitee (due to stricter checks by Pod::Simple).
+	Fix minimum Perl version to 5.8 for consistency with the Build.PL
+	  requirement.
+
 1.021   2011-11-14  Olivier Mengué (DOLMEN)
 	Fix POD tests for Kwalitee.
 	Specifiy a minimum Perl version (5.6) for Kwalitee, but in fact, no
