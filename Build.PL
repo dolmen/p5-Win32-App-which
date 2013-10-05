@@ -1,5 +1,5 @@
 use 5.008;
-exit 0 if $^O ne 'MSWin32';
+exit 0 if $^O ne 'MSWin32' && !$ENV{RELEASE_BUILD};
 use strict;
 use warnings;
 use Module::Build;
