@@ -43,15 +43,15 @@ print all pathnames instead of only the first one
 
 =over 4
 
-=item 0
+=item C<0>
 
 if the specified command is found
 
-=item 1
+=item C<1>
 
 if the specified command is not found
 
-=item 2
+=item C<2>
 
 if an invalid option is specified
 
