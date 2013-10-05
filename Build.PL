@@ -28,7 +28,7 @@ my $build = Module::Build->new(
 	# which we could check the version
     },
     requires => {
-	perl => '5.006',
+	perl => '5.008',
     },
 
     dynamic_config => 0,
