@@ -4,7 +4,7 @@ use warnings;
 
 package Win32::App::which;
 BEGIN {
-    $Win32::App::which::VERSION = '1.021';
+    $Win32::App::which::VERSION = '1.022';
 }
 
 1;
