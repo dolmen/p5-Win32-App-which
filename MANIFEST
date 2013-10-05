@@ -8,5 +8,5 @@ META.json
 META.yml
 README
 t/10-bin-chk.t
-t/90-pod.t
-t/91-pod-coverage.t
+xt/90-pod.t
+xt/91-pod-coverage.t
